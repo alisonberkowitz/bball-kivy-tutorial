@@ -15,18 +15,20 @@ You may need to use the `sudo` command before pip for a successful install
 Save the following into a text file titled `main.py`
 ```
 import kivy
-kivy.require('1.0.6') # replace with your current kivy version !
+kivy.require('1.0.6')
 
 from kivy.app import App
 from kivy.uix.label import Label
 
 
-class MyApp(App):
+class BasketballApp(App):
 
     def build(self):
         return Label(text='Hello world')
 
 
 if __name__ == '__main__':
-    MyApp().run()
+    BasketballApp().run()
 ```
+Now from your command line, run `python main.py`
+Congratulations! You have run your first Kivy app :)
