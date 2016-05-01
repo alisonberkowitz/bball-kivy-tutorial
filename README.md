@@ -75,3 +75,31 @@ class BasketballApp(App):
 if __name__ == '__main__':
     BasketballApp().run()
 ```
+
+## Adding a Hoop
+In our game, we will have a hoop and a score. We draw these by defining how the `BasketballGame widget`
+looks. This is done in a new file called `basketball.kv` that will be automatically loaded when the 
+application is run. In the same directory as your `main.py`, create a file called `basketball.kv` and 
+add the following:
+
+```
+<BasketballGame>:    
+    canvas:
+        Rectangle:
+            pos: self.center_x - 100, self.top - 200
+            size: 200, 100
+
+        Color:
+            rgb: 1, 0, 0
+        Rectangle:
+            pos: self.center_x - 50, self.top - 200
+            size: 100, 10
+
+    Label:
+        font_size: 70  
+        center_x: root.width / 2
+        top: root.center_y
+        text: "0"
+```
+Now run the app from your command line with `python main.py`. You should see a hoop made of a white 
+rectangle as the backboard and a red rectangle as the rim, and a zero that will display the score.
