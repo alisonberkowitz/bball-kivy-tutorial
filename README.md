@@ -45,7 +45,8 @@ Now that you've done "Hello World", lets make our app into a Basketball Game.
 We first need to add a BasketballGame widget to our app. A Widget is Kivy's class for ...
  In `main.py` add the class like so:
 
-```class BasketballGame(Widget):
+```
+class BasketballGame(Widget):
     pass
 ```
 
