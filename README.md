@@ -103,3 +103,105 @@ add the following:
 ```
 Now run the app from your command line with `python main.py`. You should see a hoop made of a white 
 rectangle as the backboard and a red rectangle as the rim, and a zero that will display the score.
+
+## Adding the Ball
+Now we have a hoop, but we still need a ball to shoot. Let's add a `Ball` class to create a widget 
+that will be our ball.
+
+Add this to your `main.py` file:
+```
+class Ball(Widget):
+	pass
+```
+
+And this to your `basketball.kv` file:
+```
+<Ball>:
+    size: 50, 50
+    canvas:
+    	Color: 
+    		rgb: 1, .65, 0
+        Ellipse:
+            pos: self.pos
+            size: self.size
+```
+
+Now make sure to reference your ball in your game: `ball = ObjectProperty(None)`
+Add the following line to your imports: `from kivy.properties import NumericProperty, ReferenceListProperty,\
+    ObjectProperty`
+
+Don’t forget to hook it up in the kv file, by giving the child widget an id and 
+setting the BasketballGame’s ball ObjectProperty to that id:
+```
+<BasketballGame>:
+    ball: game_ball
+
+    # ... (canvas and Labels)
+
+    Ball:
+        id: game_ball
+        center: self.parent.center
+```
+To review, you should have two files in your directory, one `main.py` that should look like this:
+```
+import kivy
+kivy.require('1.0.6') 
+
+from kivy.app import App
+from kivy.uix.widget import Widget
+from kivy.properties import NumericProperty, ReferenceListProperty,\
+    ObjectProperty
+
+class Ball(Widget):
+	pass
+		
+
+class BasketballGame(Widget):
+	ball = ObjectProperty(None)
+		
+
+class BasketballApp(App):
+
+    def build(self):
+        return BasketballGame()
+
+
+if __name__ == '__main__':
+    BasketballApp().run()
+```
+and a `basketball.kv` that should look like this:
+```
+<BasketballGame>:  
+    ball: game_ball
+
+    canvas:
+        Rectangle:
+            pos: self.center_x - 100, self.top - 200
+            size: 200, 100
+
+        Color:
+            rgb: 1, 0, 0
+        Rectangle:
+            pos: self.center_x - 50, self.top - 200
+            size: 100, 10
+
+    Label:
+        font_size: 70  
+        center_x: root.width / 2
+        top: root.center_y
+        text: "0"
+
+    Ball:
+        id: game_ball
+        center: self.parent.center  
+        
+<Ball>:
+    size: 50, 50
+    canvas:
+        Color: 
+            rgb: 1, .65, 0
+        Ellipse:
+            pos: self.pos
+            size: self.size
+```
+Now when you run `python main.py` from the command line, you should have a hoop and a ball!

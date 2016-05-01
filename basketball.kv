@@ -1,4 +1,6 @@
-<BasketballGame>:    
+<BasketballGame>:  
+    ball: game_ball
+
     canvas:
         Rectangle:
             pos: self.center_x - 100, self.top - 200
@@ -15,4 +17,16 @@
         center_x: root.width / 2
         top: root.center_y
         text: "0"
+
+    Ball:
+        id: game_ball
+        center: self.parent.center  
         
+<Ball>:
+    size: 50, 50
+    canvas:
+        Color: 
+            rgb: 1, .65, 0
+        Ellipse:
+            pos: self.pos
+            size: self.size
