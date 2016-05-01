@@ -1,7 +1,7 @@
 # Basketball Game with the Kivy Python library
 
 ## Installation
-First make sure you have python installed
+First make sure you have python installed, 2.7 is the strongly recommended version
 
 Next install Kivy with the following commands from your command line:
 ```
@@ -141,7 +141,8 @@ setting the BasketballGame’s ball ObjectProperty to that id:
 
     Ball:
         id: game_ball
-        center: self.parent.center
+        center_x: self.parent.center_x
+        top: 50
 ```
 To review, you should have two files in your directory, one `main.py` that should look like this:
 ```
@@ -194,7 +195,8 @@ and a `basketball.kv` that should look like this:
 
     Ball:
         id: game_ball
-        center: self.parent.center  
+        center_x: self.parent.center_x
+        top: 50  
         
 <Ball>:
     size: 50, 50
@@ -206,3 +208,12 @@ and a `basketball.kv` that should look like this:
             size: self.size
 ```
 Now when you run `python main.py` from the command line, you should have a hoop and a ball!
+
+## Shooting the Ball
+Now that we have all of our equipment set up, we need to make our game interactive and take 
+user input so we can shoot the ball.
+
+We need the game to update so we add
+```
+Clock.schedule_interval(game.update, 1.0/60.0)
+```
