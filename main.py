@@ -42,7 +42,8 @@ class Ball(Widget):
             dif_x = touch.x - self.start_shot[0]
             dif_y = touch.y - self.start_shot[1]
             angle = math.degrees(math.atan (dif_y/dif_x))
-            print (angle)
+            if dif_x < 0:
+            	angle += 180
             self.shoot_ball(angle)
 		
 
